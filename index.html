@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnityConstruction | Premium Building Services</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- AOS CSS (Animations) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content text-center d-flex flex-column align-items-center">
+            <div class="splash-logo-container">
+                <img src="assets/images/logo.png" alt="UnityConstruction Logo"
+                    style="width: 100px; height: 100px; object-fit: contain;">
+            </div>
+            <h1>UnityConstruction</h1>
+            <p>Building Your Dreams With Excellence</p>
+
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top transition-all" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold" href="#home"><i class="fas fa-building text-warning"></i>
+                UnityConstruction</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link scroll-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link scroll-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link scroll-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link scroll-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link scroll-link" href="#testimonials">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link font-weight-bold text-warning"
+                            href="dashboard.html">Admin</a></li>
+                    <li class="nav-item"><a class="nav-link scroll-link" href="#contact">Contact</a></li>
+                </ul>
+                <div class="d-flex ms-lg-3 mt-2 mt-lg-0">
+                    <button class="btn btn-outline-warning" id="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero d-flex align-items-center">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content text-center">
+            <h1 class="display-3 fw-bold mb-4 text-white">Crafting Structures, Building Legacies</h1>
+            <p class="lead mb-5 text-white">Expert general contracting services from scratch to completion. Your vision,
+                our precision.</p>
+            <a href="#projects" class="btn btn-warning btn-lg px-4 me-md-2 scroll-link">View Our Work</a>
+            <a href="#contact" class="btn btn-outline-light btn-lg px-4 scroll-link">Get a Quote</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-body-tertiary">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="assets/images/about.png" alt="About UnityConstruction"
+                        class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-lg-6 px-lg-5">
+                    <h6 class="text-warning text-uppercase fw-bold">About Us</h6>
+                    <h2 class="mb-4">Expert Builders with Years of Experience</h2>
+                    <p class="text-muted mb-4">At UnityConstruction, we specialize in comprehensive building development
+                        from the ground up. Whether it's a dream home, a towering commercial complex, or an intricate
+                        renovation, our expertise ensures top-notch quality and structural integrity.</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-warning me-2"></i> Quality Craftsmanship
+                        </li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-warning me-2"></i> On-Time Completion</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-warning me-2"></i> Transparent Pricing</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-warning me-2"></i> End-to-End Project
+                            Management</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-dark scroll-link">Consult With Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h6 class="text-warning text-uppercase fw-bold">Our Services</h6>
+                <h2>What We Do Best</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 service-card border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="service-icon mb-3">
+                                <i class="fas fa-home fa-3x text-warning"></i>
+                            </div>
+                            <h4 class="card-title">Residential Construction</h4>
+                            <p class="card-text text-muted">Building custom homes from scratch with personalized designs
+                                and premium materials.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 service-card border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="service-icon mb-3">
+                                <i class="fas fa-city fa-3x text-warning"></i>
+                            </div>
+                            <h4 class="card-title">Commercial Projects</h4>
+                            <p class="card-text text-muted">Developing robust commercial spaces, offices, and retail
+                                establishments tailored to your business needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 service-card border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="service-icon mb-3">
+                                <i class="fas fa-hammer fa-3x text-warning"></i>
+                            </div>
+                            <h4 class="card-title">Renovation & Remodeling</h4>
+                            <p class="card-text text-muted">Transforming existing spaces with modern aesthetics and
+                                improved functionality.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 bg-body-tertiary">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h6 class="text-warning text-uppercase fw-bold">Portfolio</h6>
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="swiper projectSwiper pb-5">
+                <div class="swiper-wrapper" id="dynamic-projects-container">
+                    <!-- Dynamic Projects Rendered Here via db -->
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-warning" role="status"></div>
+                    </div>
+                </div>
+                <!-- Pagination Dots -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5 bg-dark text-white border-top border-secondary">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h6 class="text-warning text-uppercase fw-bold">Client Reviews</h6>
+                <h2>What People Are Saying</h2>
+            </div>
+            <div class="swiper testimonialSwiper pb-5" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper" id="dynamic-testimonials-container">
+                    <!-- Dynamic Testimonials Rendered Here via db -->
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-warning" role="status"></div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-body">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-5">
+                    <h6 class="text-warning text-uppercase fw-bold">Contact Us</h6>
+                    <h2>Let's Build Something Great Together</h2>
+                    <p class="text-muted">Reach out to us for consultations, quotes, or any construction-related
+                        queries.</p>
+                </div>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <div class="contact-info bg-body-tertiary p-4 rounded shadow-sm h-100 border">
+                        <h4 class="mb-4">Get In Touch</h4>
+                        <div class="d-flex mb-3 align-items-start">
+                            <i class="fas fa-map-marker-alt text-warning fa-2x me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Our Location</h6>
+                                <p class="text-muted mb-0">123 Builder Street, Mega City, 10001</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3 align-items-start">
+                            <i class="fas fa-phone-alt text-warning fa-2x me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Call Us</h6>
+                                <p class="text-muted mb-0">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-envelope text-warning fa-2x me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Email Us</h6>
+                                <p class="text-muted mb-0">info@unityconstruction.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="bg-body-tertiary p-4 rounded shadow-sm h-100 border">
+                        <div id="contactSuccess" class="alert alert-success d-none" role="alert">
+                            <i class="fas fa-check-circle me-1"></i> Message sent successfully! <a href="#"
+                                id="contactPreviewUrl" target="_blank" class="alert-link">Preview Email</a>
+                        </div>
+                        <div id="contactError" class="alert alert-danger d-none" role="alert"></div>
+
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="contactName" placeholder="Your Name"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" id="contactEmail" placeholder="Your Email"
+                                        required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="contactSubject" placeholder="Subject"
+                                        required>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" id="contactMessage" rows="5" placeholder="Message"
+                                        required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-warning w-100 fw-bold">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 UnityConstruction. All rights reserved.</p>
+            <div class="mt-2">
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/15551234567"
+        class="bg-success d-flex justify-content-center align-items-center text-white rounded-circle shadow-lg"
+        target="_blank"
+        style="position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; z-index: 10000; text-decoration: none; transition: transform 0.3s;"
+        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <i class="fab fa-whatsapp fa-2x"></i>
+    </a>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
