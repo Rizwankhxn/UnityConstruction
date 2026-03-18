@@ -68,7 +68,7 @@ body {
 }
 
 .splash-content h1 {
-    font-size: 2.5rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+    font-size: clamp(1.8rem, 8vw, 2.5rem); font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
     background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     opacity: 0; transform: translateY(20px);
     animation: slideUpFade 0.8s ease-out forwards 0.2s;
@@ -162,7 +162,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; letter-spacing: -0.5px; }
 }
 .hero-content { position: relative; z-index: 2; }
 .hero h1 {
-    font-size: 4.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+    font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
     text-shadow: 0 10px 30px rgba(0,0,0,0.1);
     background: linear-gradient(to right, var(--theme-color), #888);
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
@@ -231,4 +231,28 @@ footer { background-color: var(--theme-surface) !important; border-top: 1px soli
 
 .card {
     background-color: var(--theme-surface); border: 1px solid var(--glass-border); color: var(--theme-color);
+}
+
+/* ==================
+   MOBILE RESPONSIVENESS
+================== */
+@media (max-width: 768px) {
+    .splash-content h1 {
+        font-size: 1.8rem;
+    }
+    .splash-content p {
+        font-size: 0.95rem;
+    }
+    .splash-logo-container {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .hero h1 {
+        font-size: 2.2rem !important;
+        letter-spacing: 1px;
+    }
+    .hero p {
+        font-size: 1.05rem !important;
+    }
+    section { padding: 60px 0; }
 }
