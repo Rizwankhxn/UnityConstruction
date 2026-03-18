@@ -81,6 +81,27 @@ const db = new sqlite3.Database('./database.sqlite', (err) => {
     }
 });
 
+// ------------------- SECURITY / AUTHENTICATION -------------------
+
+const authenticateAdmin = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    if (authHeader === 'Bearer unity-admin-secret-2026') {
+        next();
+    } else {
+        res.status(401).json({ error: 'Unauthorized Access. Please login.' });
+    }
+};
+
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+    // Hardcoded highly secure credentials for demonstration
+    if (username === 'admin' && password === 'admin123') {
+        res.json({ message: 'success', token: 'unity-admin-secret-2026' });
+    } else {
+        res.status(401).json({ error: 'Invalid credentials' });
+    }
+});
+
 // ------------------- API: PROJECTS -------------------
 
 app.get('/api/projects', (req, res) => {
@@ -90,7 +111,7 @@ app.get('/api/projects', (req, res) => {
     });
 });
 
-app.get('/api/dashboard/stats', (req, res) => {
+app.get('/api/dashboard/stats', authenticateAdmin, (req, res) => {
     const statsQuery = `
         SELECT 
             COUNT(*) as totalProjects,
@@ -119,7 +140,7 @@ app.get('/api/projects/:id', (req, res) => {
 });
 
 // Create Project (with image)
-app.post('/api/projects', upload.single('image'), (req, res) => {
+app.post('/api/projects', authenticateAdmin, upload.single('image'), (req, res) => {
     const { name, type, status, client, budget, startDate } = req.body;
     let imageUrl = req.file ? '/uploads/' + req.file.filename : null;
     
@@ -134,7 +155,7 @@ app.post('/api/projects', upload.single('image'), (req, res) => {
 });
 
 // Update Project (optionally replace image)
-app.put('/api/projects/:id', upload.single('image'), (req, res) => {
+app.put('/api/projects/:id', authenticateAdmin, upload.single('image'), (req, res) => {
     const { name, type, status, client, budget, startDate } = req.body;
     let imageUrl = req.file ? '/uploads/' + req.file.filename : req.body.existingImage;
     
@@ -148,7 +169,7 @@ app.put('/api/projects/:id', upload.single('image'), (req, res) => {
     );
 });
 
-app.delete('/api/projects/:id', (req, res) => {
+app.delete('/api/projects/:id', authenticateAdmin, (req, res) => {
     db.run('DELETE FROM projects WHERE id = ?', req.params.id, function(err) {
         if (err) return res.status(400).json({ "error": err.message });
         res.json({ "message": "success" });
@@ -175,7 +196,7 @@ app.get('/api/testimonials/:id', (req, res) => {
     });
 });
 
-app.post('/api/testimonials', (req, res) => {
+app.post('/api/testimonials', authenticateAdmin, (req, res) => {
     const { clientName, review, rating, isVisible } = req.body;
     const viz = isVisible !== undefined ? isVisible : 1;
     db.run(
@@ -188,7 +209,7 @@ app.post('/api/testimonials', (req, res) => {
     );
 });
 
-app.put('/api/testimonials/:id', (req, res) => {
+app.put('/api/testimonials/:id', authenticateAdmin, (req, res) => {
     const { clientName, review, rating, isVisible } = req.body;
     db.run(
         'UPDATE testimonials SET clientName = ?, review = ?, rating = ?, isVisible = ? WHERE id = ?',
@@ -200,7 +221,7 @@ app.put('/api/testimonials/:id', (req, res) => {
     );
 });
 
-app.delete('/api/testimonials/:id', (req, res) => {
+app.delete('/api/testimonials/:id', authenticateAdmin, (req, res) => {
     db.run('DELETE FROM testimonials WHERE id = ?', req.params.id, function(err) {
         if (err) return res.status(400).json({ "error": err.message });
         res.json({ "message": "success" });

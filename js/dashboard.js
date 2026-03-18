@@ -1,4 +1,23 @@
 $(document).ready(function () {
+    const adminToken = localStorage.getItem('adminToken');
+    if (!adminToken) {
+        window.location.replace('login.html');
+        return;
+    }
+
+    // Attach Bearer token to all outgoing API calls natively
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + adminToken);
+        },
+        error: function(jqXHR) {
+            if(jqXHR.status === 401) {
+                localStorage.removeItem('adminToken');
+                window.location.replace('login.html');
+            }
+        }
+    });
+
     // API Endpoints
     const apiBase = '/api';
 
@@ -302,6 +321,12 @@ $(document).ready(function () {
         } else {
             $icon.removeClass('fa-sun').addClass('fa-moon');
         }
+    });
+
+    // Logout Logic
+    $('#logoutBtn').click(function() {
+        localStorage.removeItem('adminToken');
+        window.location.replace('login.html');
     });
 
     // Initial Load
