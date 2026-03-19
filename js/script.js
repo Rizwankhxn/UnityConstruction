@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // 0. Initialize AOS
     AOS.init({
         duration: 800,
@@ -7,7 +7,7 @@ $(document).ready(function() {
     });
 
     // 1. Splash Screen Logic
-    setTimeout(function() {
+    setTimeout(function () {
         $('#splash-screen').css({
             'opacity': '0',
             'visibility': 'hidden'
@@ -16,7 +16,7 @@ $(document).ready(function() {
     }, 2500);
 
     // 2. Navbar Scroll Effect
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
             $('.navbar').addClass('scrolled');
         } else {
@@ -25,7 +25,7 @@ $(document).ready(function() {
     });
 
     // 3. Smooth Scrolling for Navigation Links
-    $('.scroll-link').on('click', function(event) {
+    $('.scroll-link').on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault();
             var hash = this.hash;
@@ -34,21 +34,21 @@ $(document).ready(function() {
             $('html, body').animate({
                 scrollTop: $(hash).offset().top - navHeight + 10
             }, 300);
-            
-            if($('.navbar-collapse').hasClass('show')) {
+
+            if ($('.navbar-collapse').hasClass('show')) {
                 $('.navbar-toggler').click();
             }
         }
     });
 
     // 4. Active Link Highlighting on Scroll
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
         var scrollPos = $(document).scrollTop();
         var navHeight = $('.navbar').outerHeight() + 20;
-        
-        $('.scroll-link').each(function() {
+
+        $('.scroll-link').each(function () {
             var currLink = $(this);
-            if(currLink.attr('href').charAt(0) === '#') {
+            if (currLink.attr('href').charAt(0) === '#') {
                 var refElement = $(currLink.attr('href'));
                 if (refElement.length) {
                     if (refElement.position().top - navHeight <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
@@ -61,13 +61,13 @@ $(document).ready(function() {
     });
 
     // 5. Theme Toggle Logic
-    $('#theme-toggle').on('click', function() {
+    $('#theme-toggle').on('click', function () {
         var $html = $('html');
         var currentTheme = $html.attr('data-bs-theme');
         var newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
+
         $html.attr('data-bs-theme', newTheme);
-        
+
         var $icon = $(this).find('i');
         if (newTheme === 'dark') {
             $icon.removeClass('fa-moon').addClass('fa-sun');
@@ -85,17 +85,17 @@ $(document).ready(function() {
         $.ajax({
             url: '/api/projects',
             method: 'GET',
-            success: function(res) {
-                if(res.message === 'success') {
+            success: function (res) {
+                if (res.message === 'success') {
                     const container = $('#dynamic-projects-container');
                     container.empty();
-                    
-                    if(res.data.length === 0) {
+
+                    if (res.data.length === 0) {
                         container.append('<div class="col-12 text-center text-muted">No portfolio projects published yet.</div>');
                         return;
                     }
 
-                    res.data.forEach(function(p) {
+                    res.data.forEach(function (p) {
                         // Only show completed ones logic can be added here, OR just show all
                         let imageSrc = p.imageUrl ? p.imageUrl : 'https://images.unsplash.com/photo-1541888086225-ee5ca396d18a?w=800&q=80'; // fallback
                         container.append(`
@@ -112,7 +112,7 @@ $(document).ready(function() {
                             </div>
                         `);
                     });
-                    
+
                     // Initialize Project Swiper
                     new Swiper('.projectSwiper', {
                         slidesPerView: 1,
@@ -133,17 +133,17 @@ $(document).ready(function() {
         $.ajax({
             url: '/api/testimonials?public=true',
             method: 'GET',
-            success: function(res) {
-                if(res.message === 'success') {
+            success: function (res) {
+                if (res.message === 'success') {
                     const container = $('#dynamic-testimonials-container');
                     container.empty();
-                    
-                    if(res.data.length === 0) {
+
+                    if (res.data.length === 0) {
                         container.append('<div class="col-12 text-center text-muted">No reviews yet. Check back soon!</div>');
                         return;
                     }
 
-                    res.data.forEach(function(t) {
+                    res.data.forEach(function (t) {
                         let stars = '<i class="fas fa-star text-warning"></i>'.repeat(t.rating);
                         container.append(`
                             <div class="swiper-slide list-unstyled h-auto">
@@ -174,14 +174,14 @@ $(document).ready(function() {
     }
 
     // Handle Contact Form via Nodemailer API
-    $('#contactForm').submit(function(e) {
+    $('#contactForm').submit(function (e) {
         e.preventDefault();
-        
+
         const $btn = $(this).find('button[type="submit"]');
         const originalText = $btn.text();
-        
+
         $btn.text('Sending...').prop('disabled', true);
-        
+
         const data = {
             name: $('#contactName').val(),
             email: $('#contactEmail').val(),
@@ -194,27 +194,50 @@ $(document).ready(function() {
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
-            success: function(res) {
+            success: function (res) {
                 $('#contactForm')[0].reset();
                 $('#contactError').addClass('d-none');
                 $('#contactSuccess').removeClass('d-none');
-                
+
                 // Show the Ethereal Email Preview URL
-                if(res.previewUrl) {
+                if (res.previewUrl) {
                     $('#contactPreviewUrl').attr('href', res.previewUrl);
                 }
-                
-                setTimeout(function() {
+
+                setTimeout(function () {
                     $btn.text(originalText).prop('disabled', false);
                     setTimeout(() => $('#contactSuccess').addClass('d-none'), 5000);
                 }, 1000);
             },
-            error: function() {
+            error: function () {
                 $('#contactSuccess').addClass('d-none');
                 $('#contactError').text('Failed to send message. Please try again!').removeClass('d-none');
                 $btn.text(originalText).prop('disabled', false);
             }
         });
+    });
+
+    // Handle Contact Form via WhatsApp
+    $('#sendWhatsappBtn').click(function (e) {
+        const form = $('#contactForm')[0];
+        // Ensure standard HTML5 validation triggers if empty fields exist
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        const name = $('#contactName').val();
+        const email = $('#contactEmail').val();
+        const subject = $('#contactSubject').val();
+        const message = $('#contactMessage').val();
+
+        // This is the identical phone number from the floating icon
+        const waNumber = '8788989083';
+        const waText = encodeURIComponent(
+            `Hello UnityConstruction!\nI have a new inquiry from the website:\n\n*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject}\n\n*Message:*\n${message}`
+        );
+
+        window.open(`https://wa.me/${waNumber}?text=${waText}`, '_blank');
     });
 
     // Run fetching on initialization
